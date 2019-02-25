@@ -25,4 +25,4 @@ app.get('/', function (req, res) {
   res.send(responseText)
 })
 
-app.listen(6000, "0.0.0.0")
+app.listen(80, "0.0.0.0")
