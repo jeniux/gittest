@@ -1,28 +1,6 @@
-var express = require('express')
-var app = express()
-
-
-var myLogger = function (req, res, next) {
-  console.log('LOGGED')
-  next()
-}
-
-app.use(myLogger)
-
-
-var requestTime = function (req, res, next) {
-  req.requestTime = Date.now()
-  next()
-}
-
-
-var ts = require('./timestamp.js')
-app.use(ts({ option1: '1', option2: '2' }))
-
-app.get('/', function (req, res) {
-  var responseText = 'Hello World!<br>'
-  responseText += '<small>Requested at: ' + req.ts + '</small>'
-  res.send(responseText)
-})
-
-app.listen(80, "0.0.0.0")
+var http = require('http');
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/plain'});
+  res.end('Hello World\n');
+}).listen(8080, 'localhost');
+console.log('Server running at http://localhost:8080/');
